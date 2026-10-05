@@ -32,7 +32,9 @@ function main() {
     return;
   }
 
-  const files = downloadFiles();
+  // Sem verificacao, a recontagem e parcial: nao oferecer os arquivos dela para nao confundir com o total.
+  const partialRecountFiles = ['votos_presidente_bu.csv', 'reconciliacao_presidente_bu.json'];
+  const files = downloadFiles().filter((file) => verification.verified || !partialRecountFiles.includes(file.name));
   const results = { ...buildResults(), downloads: files.map(({ name, label }) => ({ name, label })) };
 
   fs.rmSync(DIST, { recursive: true, force: true });

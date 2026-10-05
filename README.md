@@ -26,6 +26,7 @@ node download_bu_2026.js           # baixa e reconta todos os BUs (demora horas;
 node verificar.js                  # compara recontagem x TSE
 node build_site.js                 # gera o site em dist/
 node publicar.js                   # gera, verifica e publica no GitHub Pages (pasta docs/)
+node publicar.js --em-andamento    # publica os números oficiais do TSE com o aviso "recontagem em andamento"
 ```
 
 Para ver o site localmente: `npm start` e abra http://localhost:3000.
