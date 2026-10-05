@@ -1,13 +1,13 @@
 {
   "verified": false,
-  "checkedAt": "2026-10-05T19:01:01.327Z",
+  "checkedAt": "2026-10-05T23:09:43.057Z",
   "officialSource": "Resultado oficial baixado do TSE nesta verificação",
-  "officialUpdatedAt": "2026-10-05T19:00:59+00:00",
-  "recountGeneratedAt": "2026-10-05T18:17:01.805Z",
+  "officialUpdatedAt": "2026-10-05T23:09:41+00:00",
+  "recountGeneratedAt": "2026-10-05T23:08:40.834Z",
   "totals": {
-    "buFiles": 8157,
-    "representedSections": 8577,
-    "validVotesFromBUs": 2170763,
+    "buFiles": 499192,
+    "representedSections": 517123,
+    "validVotesFromBUs": 119296853,
     "officialValidVotes": 119300788
   },
   "checks": [
@@ -27,68 +27,149 @@
       "detail": "Soma das UFs: 119.300.788"
     },
     {
-      "level": "falha",
+      "level": "ok",
       "label": "Recontagem cobre as 27 UFs e o exterior",
-      "detail": "Sem recontagem: AC, AL, AP, BA, CE, DF, ES, GO, MA, MG, MS, MT, PA, PB, PE, PI, PR, RJ, RN, RO, RR, RS, SC, SE, SP, TO, ZZ"
+      "detail": "28 localidades"
     },
     {
-      "level": "ok",
+      "level": "falha",
       "label": "Todos os BUs do índice do TSE foram decodificados",
-      "detail": "8.157 de 8.157 BUs"
+      "detail": "499.192 de 499.207 BUs"
     },
     {
-      "level": "ok",
+      "level": "falha",
       "label": "Nenhum BU com erro de download ou leitura",
-      "detail": "0 falhas"
-    },
-    {
-      "level": "ok",
-      "label": "Nenhuma seção ativa sem BU publicado",
-      "detail": "0 seções sem BU"
+      "detail": "15 falhas (veja reconciliacao_presidente_bu.json)"
     },
     {
       "level": "aviso",
-      "label": "BUs com situação diferente de \"Totalizado\" no TSE",
-      "detail": "AM FONTE BOA zona 0010 seção 0027: Recebido"
+      "label": "BUs com situação diferente de \"Totalizado\" no índice do TSE (foram lidos e contados normalmente)",
+      "detail": "6.960 BUs — AM: Recebido 1; MG: Recebido 1.487; PA: Recebido 506; PE: Recebido 8; SP: Recebido 4.958"
+    },
+    {
+      "level": "aviso",
+      "label": "BUs lidos sem nenhum voto nominal para Presidente (só brancos/nulos ou sem eleitores)",
+      "detail": "ZZ CIUDAD GUAYANA seção 0091: comparecimento 0"
     },
     {
       "level": "aviso",
       "label": "Votos para números que não constam como candidatos válidos (o TSE os conta como nulos)",
-      "detail": "AM: nº 28 com 82 votos"
+      "detail": "AC: nº 28 com 23 votos; AL: nº 28 com 73 votos; AP: nº 28 com 17 votos; AM: nº 28 com 82 votos; BA: nº 28 com 251 votos; CE: nº 28 com 177 votos; DF: nº 28 com 57 votos; ES: nº 28 com 121 votos; GO: nº 28 com 107 votos; MA: nº 28 com 345 votos; MG: nº 28 com 561 votos; MS: nº 28 com 76 votos; MT: nº 28 com 95 votos; PA: nº 28 com 183 votos; PB: nº 28 com 90 votos; PE: nº 28 com 138 votos; PI: nº 28 com 52 votos; PR: nº 28 com 268 votos; RJ: nº 28 com 387 votos; RN: nº 28 com 63 votos; RO: nº 28 com 66 votos; RR: nº 28 com 14 votos; RS: nº 28 com 253 votos; SC: nº 28 com 184 votos; SE: nº 28 com 57 votos; SP: nº 28 com 1.355 votos; TO: nº 28 com 28 votos; ZZ: nº 28 com 123 votos"
+    },
+    {
+      "level": "aviso",
+      "label": "Comparecimento somado dos BUs = comparecimento oficial",
+      "detail": "BUs: 125.270.285 · TSE: 125.275.835"
+    },
+    {
+      "level": "aviso",
+      "label": "Seções ativas sem BU no índice do TSE (sem efeito: os votos desses lugares batem exatamente com o TSE)",
+      "detail": "41 seções — ZZ: 41"
     },
     {
       "level": "falha",
       "label": "Votos de cada candidato iguais aos do TSE em todas as localidades",
-      "detail": "Ainda sem recontagem: BR, AC, AL, AP, BA, CE, DF, ES, GO, MA, MG, MS, MT, PA, PB, PE, PI, PR, RJ, RN, RO, RR, RS, SC, SE, SP, TO, ZZ"
+      "detail": "Diferenças em: BR, MG, SP"
     }
   ],
   "locations": [
     {
       "location": "BR",
       "officialValid": 119300788,
-      "recountValid": null,
-      "status": "pendente",
-      "differences": []
+      "recountValid": 119296853,
+      "status": "diferente",
+      "differences": [
+        {
+          "number": "22",
+          "candidate": "FLAVIO NANTES BOLSONARO (PL)",
+          "official": 56104503,
+          "recount": 56102746,
+          "difference": -1757
+        },
+        {
+          "number": "55",
+          "candidate": "RONALDO RAMOS CAIADO (PSD)",
+          "official": 2605148,
+          "recount": 2605058,
+          "difference": -90
+        },
+        {
+          "number": "13",
+          "candidate": "LUIZ INÁCIO LULA DA SILVA (PT)",
+          "official": 53879538,
+          "recount": 53877792,
+          "difference": -1746
+        },
+        {
+          "number": "27",
+          "candidate": "CLARIANA ZACARKIM BARAO (DC)",
+          "official": 40043,
+          "recount": 40041,
+          "difference": -2
+        },
+        {
+          "number": "21",
+          "candidate": "EDMILSON SILVA COSTA (PCB)",
+          "official": 22693,
+          "recount": 22692,
+          "difference": -1
+        },
+        {
+          "number": "16",
+          "candidate": "HERTZ DA CONCEICAO DIAS (PSTU)",
+          "official": 43103,
+          "recount": 43099,
+          "difference": -4
+        },
+        {
+          "number": "70",
+          "candidate": "AUGUSTO JORGE CURY (AVANTE)",
+          "official": 3448569,
+          "recount": 3448408,
+          "difference": -161
+        },
+        {
+          "number": "30",
+          "candidate": "ROMEU ZEMA NETO (NOVO)",
+          "official": 326488,
+          "recount": 326465,
+          "difference": -23
+        },
+        {
+          "number": "80",
+          "candidate": "SAMARA MARTINS DA SILVA FEITOSA (UP)",
+          "official": 122911,
+          "recount": 122909,
+          "difference": -2
+        },
+        {
+          "number": "14",
+          "candidate": "RENAN ANTONIO FERREIRA DOS SANTOS (MISSÃO)",
+          "official": 2675887,
+          "recount": 2675738,
+          "difference": -149
+        }
+      ]
     },
     {
       "location": "AC",
       "officialValid": 469066,
-      "recountValid": null,
-      "status": "pendente",
+      "recountValid": 469066,
+      "status": "igual",
       "differences": []
     },
     {
       "location": "AL",
       "officialValid": 1818856,
-      "recountValid": null,
-      "status": "pendente",
+      "recountValid": 1818856,
+      "status": "igual",
       "differences": []
     },
     {
       "location": "AP",
       "officialValid": 464858,
-      "recountValid": null,
-      "status": "pendente",
+      "recountValid": 464858,
+      "status": "igual",
       "differences": []
     },
     {
@@ -101,169 +182,283 @@
     {
       "location": "BA",
       "officialValid": 8560291,
-      "recountValid": null,
-      "status": "pendente",
+      "recountValid": 8560291,
+      "status": "igual",
       "differences": []
     },
     {
       "location": "CE",
       "officialValid": 5617814,
-      "recountValid": null,
-      "status": "pendente",
+      "recountValid": 5617814,
+      "status": "igual",
       "differences": []
     },
     {
       "location": "DF",
       "officialValid": 1772808,
-      "recountValid": null,
-      "status": "pendente",
+      "recountValid": 1772808,
+      "status": "igual",
       "differences": []
     },
     {
       "location": "ES",
       "officialValid": 2251078,
-      "recountValid": null,
-      "status": "pendente",
+      "recountValid": 2251078,
+      "status": "igual",
       "differences": []
     },
     {
       "location": "GO",
       "officialValid": 3827823,
-      "recountValid": null,
-      "status": "pendente",
+      "recountValid": 3827823,
+      "status": "igual",
       "differences": []
     },
     {
       "location": "MA",
       "officialValid": 4010439,
-      "recountValid": null,
-      "status": "pendente",
+      "recountValid": 4010439,
+      "status": "igual",
       "differences": []
     },
     {
       "location": "MG",
       "officialValid": 11976235,
-      "recountValid": null,
-      "status": "pendente",
-      "differences": []
+      "recountValid": 11975604,
+      "status": "diferente",
+      "differences": [
+        {
+          "number": "22",
+          "candidate": "FLAVIO NANTES BOLSONARO (PL)",
+          "official": 5777548,
+          "recount": 5777227,
+          "difference": -321
+        },
+        {
+          "number": "55",
+          "candidate": "RONALDO RAMOS CAIADO (PSD)",
+          "official": 230423,
+          "recount": 230408,
+          "difference": -15
+        },
+        {
+          "number": "13",
+          "candidate": "LUIZ INÁCIO LULA DA SILVA (PT)",
+          "official": 5188936,
+          "recount": 5188701,
+          "difference": -235
+        },
+        {
+          "number": "30",
+          "candidate": "ROMEU ZEMA NETO (NOVO)",
+          "official": 98407,
+          "recount": 98399,
+          "difference": -8
+        },
+        {
+          "number": "70",
+          "candidate": "AUGUSTO JORGE CURY (AVANTE)",
+          "official": 409737,
+          "recount": 409712,
+          "difference": -25
+        },
+        {
+          "number": "14",
+          "candidate": "RENAN ANTONIO FERREIRA DOS SANTOS (MISSÃO)",
+          "official": 247209,
+          "recount": 247182,
+          "difference": -27
+        }
+      ]
     },
     {
       "location": "MS",
       "officialValid": 1490278,
-      "recountValid": null,
-      "status": "pendente",
+      "recountValid": 1490278,
+      "status": "igual",
       "differences": []
     },
     {
       "location": "MT",
       "officialValid": 1993288,
-      "recountValid": null,
-      "status": "pendente",
+      "recountValid": 1993288,
+      "status": "igual",
       "differences": []
     },
     {
       "location": "PA",
       "officialValid": 4863172,
-      "recountValid": null,
-      "status": "pendente",
+      "recountValid": 4863172,
+      "status": "igual",
       "differences": []
     },
     {
       "location": "PB",
       "officialValid": 2513747,
-      "recountValid": null,
-      "status": "pendente",
+      "recountValid": 2513747,
+      "status": "igual",
       "differences": []
     },
     {
       "location": "PE",
       "officialValid": 5601017,
-      "recountValid": null,
-      "status": "pendente",
+      "recountValid": 5601017,
+      "status": "igual",
       "differences": []
     },
     {
       "location": "PI",
       "officialValid": 2146394,
-      "recountValid": null,
-      "status": "pendente",
+      "recountValid": 2146394,
+      "status": "igual",
       "differences": []
     },
     {
       "location": "PR",
       "officialValid": 6585243,
-      "recountValid": null,
-      "status": "pendente",
+      "recountValid": 6585243,
+      "status": "igual",
       "differences": []
     },
     {
       "location": "RJ",
       "officialValid": 9369700,
-      "recountValid": null,
-      "status": "pendente",
+      "recountValid": 9369700,
+      "status": "igual",
       "differences": []
     },
     {
       "location": "RN",
       "officialValid": 2071898,
-      "recountValid": null,
-      "status": "pendente",
+      "recountValid": 2071898,
+      "status": "igual",
       "differences": []
     },
     {
       "location": "RO",
       "officialValid": 968059,
-      "recountValid": null,
-      "status": "pendente",
+      "recountValid": 968059,
+      "status": "igual",
       "differences": []
     },
     {
       "location": "RR",
       "officialValid": 325545,
-      "recountValid": null,
-      "status": "pendente",
+      "recountValid": 325545,
+      "status": "igual",
       "differences": []
     },
     {
       "location": "RS",
       "officialValid": 6423046,
-      "recountValid": null,
-      "status": "pendente",
+      "recountValid": 6423046,
+      "status": "igual",
       "differences": []
     },
     {
       "location": "SC",
       "officialValid": 4500897,
-      "recountValid": null,
-      "status": "pendente",
+      "recountValid": 4500897,
+      "status": "igual",
       "differences": []
     },
     {
       "location": "SE",
       "officialValid": 1364196,
-      "recountValid": null,
-      "status": "pendente",
+      "recountValid": 1364196,
+      "status": "igual",
       "differences": []
     },
     {
       "location": "SP",
       "officialValid": 24882948,
-      "recountValid": null,
-      "status": "pendente",
-      "differences": []
+      "recountValid": 24879644,
+      "status": "diferente",
+      "differences": [
+        {
+          "number": "22",
+          "candidate": "FLAVIO NANTES BOLSONARO (PL)",
+          "official": 12922023,
+          "recount": 12920587,
+          "difference": -1436
+        },
+        {
+          "number": "55",
+          "candidate": "RONALDO RAMOS CAIADO (PSD)",
+          "official": 579571,
+          "recount": 579496,
+          "difference": -75
+        },
+        {
+          "number": "13",
+          "candidate": "LUIZ INÁCIO LULA DA SILVA (PT)",
+          "official": 9505413,
+          "recount": 9503902,
+          "difference": -1511
+        },
+        {
+          "number": "27",
+          "candidate": "CLARIANA ZACARKIM BARAO (DC)",
+          "official": 10563,
+          "recount": 10561,
+          "difference": -2
+        },
+        {
+          "number": "21",
+          "candidate": "EDMILSON SILVA COSTA (PCB)",
+          "official": 6129,
+          "recount": 6128,
+          "difference": -1
+        },
+        {
+          "number": "16",
+          "candidate": "HERTZ DA CONCEICAO DIAS (PSTU)",
+          "official": 15815,
+          "recount": 15811,
+          "difference": -4
+        },
+        {
+          "number": "70",
+          "candidate": "AUGUSTO JORGE CURY (AVANTE)",
+          "official": 892368,
+          "recount": 892232,
+          "difference": -136
+        },
+        {
+          "number": "30",
+          "candidate": "ROMEU ZEMA NETO (NOVO)",
+          "official": 94635,
+          "recount": 94620,
+          "difference": -15
+        },
+        {
+          "number": "80",
+          "candidate": "SAMARA MARTINS DA SILVA FEITOSA (UP)",
+          "official": 42532,
+          "recount": 42530,
+          "difference": -2
+        },
+        {
+          "number": "14",
+          "candidate": "RENAN ANTONIO FERREIRA DOS SANTOS (MISSÃO)",
+          "official": 804310,
+          "recount": 804188,
+          "difference": -122
+        }
+      ]
     },
     {
       "location": "TO",
       "officialValid": 930447,
-      "recountValid": null,
-      "status": "pendente",
+      "recountValid": 930447,
+      "status": "igual",
       "differences": []
     },
     {
       "location": "ZZ",
       "officialValid": 330882,
-      "recountValid": null,
-      "status": "pendente",
+      "recountValid": 330882,
+      "status": "igual",
       "differences": []
     }
   ]
