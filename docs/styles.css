@@ -138,6 +138,13 @@ tbody tr:hover, .location-row:focus {
 }
 
 .location-row { cursor: pointer; }
+/* Linhas por vencedor: 22 (Flávio Bolsonaro) verde, 13 (Lula) vermelho. */
+.location-row.winner-22 { background: #d3f9d8; }
+.location-row.winner-22:hover, .location-row.winner-22:focus { background: #b2f2bb; }
+.location-row.winner-22 td:first-child { box-shadow: inset 4px 0 #2b8a3e; }
+.location-row.winner-13 { background: #ffe3e3; }
+.location-row.winner-13:hover, .location-row.winner-13:focus { background: #ffc9c9; }
+.location-row.winner-13 td:first-child { box-shadow: inset 4px 0 #c92a2a; }
 .source-note { margin: 16px 0 0; color: var(--muted); font: 0.82rem/1.5 Arial, sans-serif; }
 
 .loading {
