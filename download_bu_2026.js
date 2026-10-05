@@ -139,9 +139,11 @@ async function decodeBatch(page, files) {
           if (!presidentElection) throw new Error('Eleicao presidencial 6257 ausente no BU.');
 
           const candidates = [];
+          let hasPresidentTotals = false;
           for (const contest of presidentElection.resultadosVotacao?.content || []) {
             for (const total of contest.totaisVotosCargo?.content || []) {
               if (String(total.codigoCargoConsulta?.value) !== '1') continue;
+              hasPresidentTotals = true;
               for (const vote of total.votosVotaveis?.content || []) {
                 if (String(vote.tipoVoto?.value) !== '1') continue;
                 const number = vote.identificacaoVotavel?.codigo?.value;
@@ -150,7 +152,8 @@ async function decodeBatch(page, files) {
               }
             }
           }
-          if (!candidates.length) throw new Error('BU sem votos nominais para Presidente.');
+          // Um BU com o cargo de Presidente mas sem votos nominais e valido (ex.: secao no exterior so com brancos/nulos).
+          if (!hasPresidentTotals) throw new Error('BU sem totais do cargo de Presidente.');
           return { ...metadata, candidates, turnout: Number(content.qtdEleitoresCompareceram?.value || 0) };
         } catch (error) {
           return { ...metadata, decodeError: error.message };
@@ -229,6 +232,7 @@ async function main() {
   const unrecognizedNominalVotes = new Map();
   const failures = [];
   const nonTotalizedSections = [];
+  const busWithoutNominalVotes = [];
   let processed = 0;
   let downloaded = 0;
   let turnout = 0;
@@ -296,6 +300,7 @@ async function main() {
         stats.turnout += item.turnout;
         turnout += item.turnout;
         representedSections += 1 + Number(item.aggregatedSections || 0);
+        if (!item.candidates.length) busWithoutNominalVotes.push({ uf: item.uf, municipality: item.municipality, municipalityName: item.municipalityName, zone: item.zone, section: item.section, turnout: item.turnout });
         for (const candidate of item.candidates) {
           const candidateNumber = String(Number(candidate.number));
           const votes = Number(candidate.votes);
@@ -385,6 +390,7 @@ async function main() {
     validVotesFromBUs: totalValidVotes,
     officialValidVotesInScope: officialScopedValidVotes,
     officialNationalValidVotes,
+    busWithoutNominalVotes,
     unrecognizedNominalVotes: [...unrecognizedNominalVotes].map(([key, votes]) => ({ uf: key.split(':')[0], numero: key.split(':')[1], votos: votes })),
     candidateDifferences: diffs,
     failures,

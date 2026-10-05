@@ -78,6 +78,7 @@ function verify({ officialDir = ROOT } = {}) {
   // 2. Recontagem: todos os BUs baixados e decodificados.
   let report = null;
   let recount = null;
+  let sectionsWithoutBu = null;
   try {
     report = JSON.parse(fs.readFileSync(path.join(RECOUNT_DIR, 'reconciliacao_presidente_bu.json'), 'utf8'));
     recount = votesByLocation(readCsv(path.join(RECOUNT_DIR, 'votos_presidente_bu.csv')));
@@ -95,11 +96,19 @@ function verify({ officialDir = ROOT } = {}) {
       `${report.decodedSections.toLocaleString('pt-BR')} de ${report.expectedBuFiles.toLocaleString('pt-BR')} BUs`);
     add(report.failures.length ? 'falha' : 'ok', 'Nenhum BU com erro de download ou leitura',
       report.failures.length ? `${report.failures.length} falhas (veja reconciliacao_presidente_bu.json)` : '0 falhas');
-    add(report.activeSectionsWithoutBu.length ? 'falha' : 'ok', 'Nenhuma seção ativa sem BU publicado',
-      `${report.activeSectionsWithoutBu.length} seções sem BU`);
+    sectionsWithoutBu = report.activeSectionsWithoutBu; // avaliado depois da comparação voto a voto
     if (report.nonTotalizedBuSections.length) {
-      add('aviso', 'BUs com situação diferente de "Totalizado" no TSE',
-        report.nonTotalizedBuSections.map((item) => `${item.uf} ${item.municipalityName} zona ${item.zone} seção ${item.section}: ${item.status}`).join('; '));
+      const byUfStatus = new Map();
+      for (const item of report.nonTotalizedBuSections) {
+        const key = `${item.uf}: ${item.status}`;
+        byUfStatus.set(key, (byUfStatus.get(key) || 0) + 1);
+      }
+      add('aviso', 'BUs com situação diferente de "Totalizado" no índice do TSE (foram lidos e contados normalmente)',
+        `${report.nonTotalizedBuSections.length.toLocaleString('pt-BR')} BUs — ${[...byUfStatus].map(([key, count]) => `${key} ${count.toLocaleString('pt-BR')}`).join('; ')}`);
+    }
+    if (report.busWithoutNominalVotes?.length) {
+      add('aviso', 'BUs lidos sem nenhum voto nominal para Presidente (só brancos/nulos ou sem eleitores)',
+        report.busWithoutNominalVotes.map((item) => `${item.uf} ${item.municipalityName} seção ${item.section}: comparecimento ${item.turnout}`).join('; '));
     }
     if (report.unrecognizedNominalVotes.length) {
       add('aviso', 'Votos para números que não constam como candidatos válidos (o TSE os conta como nulos)',
@@ -134,6 +143,20 @@ function verify({ officialDir = ROOT } = {}) {
       differences
     };
   });
+  // Seções ativas sem BU no índice do TSE só são aceitáveis se o lugar delas bate voto a voto com o TSE
+  // (ou seja, o resultado oficial também não tem votos delas).
+  if (sectionsWithoutBu?.length) {
+    const byUf = new Map();
+    for (const item of sectionsWithoutBu) byUf.set(item.uf, (byUf.get(item.uf) || 0) + 1);
+    const harmless = [...byUf.keys()].every((uf) => locations.find((item) => item.location === uf)?.status === 'igual');
+    add(harmless ? 'aviso' : 'falha', harmless
+      ? 'Seções ativas sem BU no índice do TSE (sem efeito: os votos desses lugares batem exatamente com o TSE)'
+      : 'Seções ativas sem BU no índice do TSE',
+    `${sectionsWithoutBu.length} seções — ${[...byUf].map(([uf, count]) => `${uf}: ${count}`).join('; ')}`);
+  } else if (report) {
+    add('ok', 'Nenhuma seção ativa sem BU no índice do TSE', '0 seções sem BU');
+  }
+
   const different = locations.filter((item) => item.status === 'diferente');
   const pending = locations.filter((item) => item.status === 'pendente');
   add(different.length || pending.length ? 'falha' : 'ok', 'Votos de cada candidato iguais aos do TSE em todas as localidades',
