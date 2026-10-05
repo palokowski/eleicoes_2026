@@ -12,6 +12,15 @@ const downloadsSection = document.getElementById('downloads-section');
 let chart;
 let results;
 
+// Cores fixas por candidato: 22 (Flávio Bolsonaro) verde, 13 (Lula) vermelho.
+const candidateColors = { 22: '#2b8a3e', 13: '#c92a2a' };
+const otherColors = ['#1971c2', '#b08900', '#7048e8', '#0c8599', '#e8590c', '#868e96'];
+
+function barColors(candidates) {
+  let next = 0;
+  return candidates.map((item) => candidateColors[Number(item.number)] || otherColors[next++ % otherColors.length]);
+}
+
 function escapeHtml(value) {
   return String(value ?? '').replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
 }
@@ -90,7 +99,7 @@ function renderLocation(locationId) {
       labels: location.candidates.map((item) => item.candidate),
       datasets: [{
         data: location.candidates.map((item) => item.percentage),
-        backgroundColor: ['#087f5b', '#d9480f', '#1971c2', '#b08900', '#7048e8', '#c2255c'],
+        backgroundColor: barColors(location.candidates),
         borderRadius: 3,
         barThickness: 22
       }]
@@ -121,7 +130,7 @@ function renderLocation(locationId) {
 function renderStateTable(data) {
   stateTableEl.innerHTML = data.locations
     .map((item) => `
-      <tr class="location-row" data-location="${escapeHtml(item.id)}" tabindex="0" role="button" aria-label="Ver resultado de ${escapeHtml(item.name)}">
+      <tr class="location-row${item.winner ? ` winner-${Number(item.winner.number)}` : ''}" data-location="${escapeHtml(item.id)}" tabindex="0" role="button" aria-label="Ver resultado de ${escapeHtml(item.name)}">
         <td>${escapeHtml(item.uf)}</td>
         <td>${escapeHtml(item.name)}</td>
         <td class="num">${formatNumber(item.validVotes)}</td>
