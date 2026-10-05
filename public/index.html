@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apuração presidencial | 1º turno</title>
+    <meta name="description" content="Recontagem independente dos boletins de urna da eleição presidencial de 2026, 1º turno, comparada com o resultado oficial do TSE." />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <div>
+          <p class="eyebrow" id="mode-label">Eleições 2026 · 1º turno</p>
+          <h1>Presidência do Brasil</h1>
+        </div>
+        <button id="load-results" class="primary">Atualizar contagem</button>
+      </header>
+
+      <div id="status-banner" class="status-banner" hidden></div>
+
+      <section class="summary" id="summary">
+        <div class="loading">Carregando resultados…</div>
+      </section>
+
+      <section class="results-card chart-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Votos válidos por candidato</p>
+            <h2 id="chart-title">Brasil</h2>
+          </div>
+          <label for="location-select">Localidade
+            <select id="location-select" disabled>
+              <option value="br">Brasil</option>
+            </select>
+          </label>
+        </div>
+        <div class="chart-wrap"><canvas id="votes-chart" aria-label="Gráfico de votos e porcentagem por candidato"></canvas></div>
+        <div id="candidate-table-wrap" class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Número</th>
+                <th>Candidato</th>
+                <th>Partido</th>
+                <th class="num">Votos</th>
+                <th class="num">% válidos</th>
+              </tr>
+            </thead>
+            <tbody id="candidate-table"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="results-card">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Brasil e exterior</p>
+            <h2>Totais por localidade</h2>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>UF</th>
+                <th>Localidade</th>
+                <th class="num">Votos válidos</th>
+                <th class="num">Comparecimento</th>
+                <th>Vencedor</th>
+              </tr>
+            </thead>
+            <tbody id="state-table"></tbody>
+          </table>
+        </div>
+        <p id="source-note" class="source-note"></p>
+      </section>
+
+      <section class="results-card" id="verification-section" hidden>
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Conferência</p>
+            <h2>Recontagem × resultado oficial do TSE</h2>
+          </div>
+        </div>
+        <ul class="check-list" id="check-list"></ul>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Localidade</th>
+                <th class="num">Válidos · TSE</th>
+                <th class="num">Válidos · BUs recontados</th>
+                <th>Situação</th>
+              </tr>
+            </thead>
+            <tbody id="verification-table"></tbody>
+          </table>
+        </div>
+        <p id="verification-note" class="source-note"></p>
+      </section>
+
+      <section class="results-card" id="downloads-section" hidden>
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Transparência</p>
+            <h2>Baixe os dados</h2>
+          </div>
+        </div>
+        <ul class="downloads" id="downloads"></ul>
+      </section>
+    </div>
+
+    <script src="vendor/chart.js/chart.umd.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+node_modules/
+dist/
+
+# Os BUs baixados do TSE (centenas de MB) ficam so no computador local.
+# Qualquer pessoa pode baixa-los de novo com: node download_bu_2026.js
+data/2026/1-turno/boletins/
+data/2026/1-turno/oficial/
+
+.env
+*.log

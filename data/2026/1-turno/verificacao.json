@@ -1,0 +1,270 @@
+{
+  "verified": false,
+  "checkedAt": "2026-10-05T18:34:14.583Z",
+  "officialSource": "Resultado oficial baixado do TSE nesta verificação",
+  "officialUpdatedAt": "2026-10-05T18:34:13+00:00",
+  "recountGeneratedAt": "2026-10-05T18:17:01.805Z",
+  "totals": {
+    "buFiles": 8157,
+    "representedSections": 8577,
+    "validVotesFromBUs": 2170763,
+    "officialValidVotes": 119300788
+  },
+  "checks": [
+    {
+      "level": "ok",
+      "label": "Resultado oficial do TSE presente para Brasil, 27 UFs e exterior",
+      "detail": "29 localidades"
+    },
+    {
+      "level": "ok",
+      "label": "Apuração oficial com 100% das seções totalizadas",
+      "detail": "100% em todas as localidades"
+    },
+    {
+      "level": "ok",
+      "label": "Resultado oficial coerente (soma dos candidatos = válidos; soma das UFs = Brasil)",
+      "detail": "Soma das UFs: 119.300.788"
+    },
+    {
+      "level": "falha",
+      "label": "Recontagem cobre as 27 UFs e o exterior",
+      "detail": "Sem recontagem: AC, AL, AP, BA, CE, DF, ES, GO, MA, MG, MS, MT, PA, PB, PE, PI, PR, RJ, RN, RO, RR, RS, SC, SE, SP, TO, ZZ"
+    },
+    {
+      "level": "ok",
+      "label": "Todos os BUs do índice do TSE foram decodificados",
+      "detail": "8.157 de 8.157 BUs"
+    },
+    {
+      "level": "ok",
+      "label": "Nenhum BU com erro de download ou leitura",
+      "detail": "0 falhas"
+    },
+    {
+      "level": "ok",
+      "label": "Nenhuma seção ativa sem BU publicado",
+      "detail": "0 seções sem BU"
+    },
+    {
+      "level": "aviso",
+      "label": "BUs com situação diferente de \"Totalizado\" no TSE",
+      "detail": "AM FONTE BOA zona 0010 seção 0027: Recebido"
+    },
+    {
+      "level": "aviso",
+      "label": "Votos para números que não constam como candidatos válidos (o TSE os conta como nulos)",
+      "detail": "AM: nº 28 com 82 votos"
+    },
+    {
+      "level": "falha",
+      "label": "Votos de cada candidato iguais aos do TSE em todas as localidades",
+      "detail": "Ainda sem recontagem: BR, AC, AL, AP, BA, CE, DF, ES, GO, MA, MG, MS, MT, PA, PB, PE, PI, PR, RJ, RN, RO, RR, RS, SC, SE, SP, TO, ZZ"
+    }
+  ],
+  "locations": [
+    {
+      "location": "BR",
+      "officialValid": 119300788,
+      "recountValid": null,
+      "status": "pendente",
+      "differences": []
+    },
+    {
+      "location": "AC",
+      "officialValid": 469066,
+      "recountValid": null,
+      "status": "pendente",
+      "differences": []
+    },
+    {
+      "location": "AL",
+      "officialValid": 1818856,
+      "recountValid": null,
+      "status": "pendente",
+      "differences": []
+    },
+    {
+      "location": "AP",
+      "officialValid": 464858,
+      "recountValid": null,
+      "status": "pendente",
+      "differences": []
+    },
+    {
+      "location": "AM",
+      "officialValid": 2170763,
+      "recountValid": 2170763,
+      "status": "igual",
+      "differences": []
+    },
+    {
+      "location": "BA",
+      "officialValid": 8560291,
+      "recountValid": null,
+      "status": "pendente",
+      "differences": []
+    },
+    {
+      "location": "CE",
+      "officialValid": 5617814,
+      "recountValid": null,
+      "status": "pendente",
+      "differences": []
+    },
+    {
+      "location": "DF",
+      "officialValid": 1772808,
+      "recountValid": null,
+      "status": "pendente",
+      "differences": []
+    },
+    {
+      "location": "ES",
+      "officialValid": 2251078,
+      "recountValid": null,
+      "status": "pendente",
+      "differences": []
+    },
+    {
+      "location": "GO",
+      "officialValid": 3827823,
+      "recountValid": null,
+      "status": "pendente",
+      "differences": []
+    },
+    {
+      "location": "MA",
+      "officialValid": 4010439,
+      "recountValid": null,
+      "status": "pendente",
+      "differences": []
+    },
+    {
+      "location": "MG",
+      "officialValid": 11976235,
+      "recountValid": null,
+      "status": "pendente",
+      "differences": []
+    },
+    {
+      "location": "MS",
+      "officialValid": 1490278,
+      "recountValid": null,
+      "status": "pendente",
+      "differences": []
+    },
+    {
+      "location": "MT",
+      "officialValid": 1993288,
+      "recountValid": null,
+      "status": "pendente",
+      "differences": []
+    },
+    {
+      "location": "PA",
+      "officialValid": 4863172,
+      "recountValid": null,
+      "status": "pendente",
+      "differences": []
+    },
+    {
+      "location": "PB",
+      "officialValid": 2513747,
+      "recountValid": null,
+      "status": "pendente",
+      "differences": []
+    },
+    {
+      "location": "PE",
+      "officialValid": 5601017,
+      "recountValid": null,
+      "status": "pendente",
+      "differences": []
+    },
+    {
+      "location": "PI",
+      "officialValid": 2146394,
+      "recountValid": null,
+      "status": "pendente",
+      "differences": []
+    },
+    {
+      "location": "PR",
+      "officialValid": 6585243,
+      "recountValid": null,
+      "status": "pendente",
+      "differences": []
+    },
+    {
+      "location": "RJ",
+      "officialValid": 9369700,
+      "recountValid": null,
+      "status": "pendente",
+      "differences": []
+    },
+    {
+      "location": "RN",
+      "officialValid": 2071898,
+      "recountValid": null,
+      "status": "pendente",
+      "differences": []
+    },
+    {
+      "location": "RO",
+      "officialValid": 968059,
+      "recountValid": null,
+      "status": "pendente",
+      "differences": []
+    },
+    {
+      "location": "RR",
+      "officialValid": 325545,
+      "recountValid": null,
+      "status": "pendente",
+      "differences": []
+    },
+    {
+      "location": "RS",
+      "officialValid": 6423046,
+      "recountValid": null,
+      "status": "pendente",
+      "differences": []
+    },
+    {
+      "location": "SC",
+      "officialValid": 4500897,
+      "recountValid": null,
+      "status": "pendente",
+      "differences": []
+    },
+    {
+      "location": "SE",
+      "officialValid": 1364196,
+      "recountValid": null,
+      "status": "pendente",
+      "differences": []
+    },
+    {
+      "location": "SP",
+      "officialValid": 24882948,
+      "recountValid": null,
+      "status": "pendente",
+      "differences": []
+    },
+    {
+      "location": "TO",
+      "officialValid": 930447,
+      "recountValid": null,
+      "status": "pendente",
+      "differences": []
+    },
+    {
+      "location": "ZZ",
+      "officialValid": 330882,
+      "recountValid": null,
+      "status": "pendente",
+      "differences": []
+    }
+  ]
+}

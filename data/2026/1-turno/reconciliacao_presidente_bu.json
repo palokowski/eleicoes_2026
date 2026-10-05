@@ -1,0 +1,40 @@
+{
+  "election": "6257",
+  "pleito": "3220",
+  "source": "BUs .dat oficiais do TSE decodificados pelo leitor do aplicativo oficial",
+  "complete": false,
+  "sectionsInIndex": 8157,
+  "expectedSections": 8157,
+  "expectedBuFiles": 8157,
+  "activeSectionsWithoutBu": [],
+  "nonTotalizedBuSections": [
+    {
+      "uf": "AM",
+      "municipality": "02330",
+      "municipalityName": "FONTE BOA",
+      "zone": "0010",
+      "section": "0027",
+      "aggregatedSections": 0,
+      "hasBu": true,
+      "status": "Recebido"
+    }
+  ],
+  "decodedSections": 8157,
+  "representedSections": 8577,
+  "downloadedThisRun": 1,
+  "unavailableOrFailed": 0,
+  "turnOutFromBUs": 2234549,
+  "validVotesFromBUs": 2170763,
+  "officialValidVotesInScope": 2170763,
+  "officialNationalValidVotes": 119300788,
+  "unrecognizedNominalVotes": [
+    {
+      "uf": "AM",
+      "numero": "28",
+      "votos": 82
+    }
+  ],
+  "candidateDifferences": [],
+  "failures": [],
+  "generatedAt": "2026-10-05T18:17:01.805Z"
+}
