@@ -24,7 +24,7 @@ try {
 }
 
 const results = JSON.parse(fs.readFileSync(path.join(DIST, 'data', 'results.json'), 'utf8'));
-const verified = results.mode === 'recontagem' && results.verification?.verified;
+const verified = results.verified;
 if (!verified && !inProgress) {
   console.error('\nNada foi publicado: o site gerado não está com a recontagem verificada.');
   process.exit(1);
@@ -41,7 +41,7 @@ if (!changed) {
   process.exit(0);
 }
 run('git', ['commit', '-m', verified
-  ? `Publica recontagem verificada (${results.verification.totals.buFiles.toLocaleString('pt-BR')} BUs, conferida em ${results.verification.checkedAt})`
-  : `Publica resultado oficial do TSE com recontagem em andamento (${new Date().toISOString()})`]);
+  ? `Publica recontagem verificada (${results.recount.busRead.toLocaleString('pt-BR')} BUs, conferida em ${results.verification.checkedAt})`
+  : `Publica comparação TSE × BUs, recontagem ainda com diferenças (${new Date().toISOString()})`]);
 run('git', ['push']);
 console.log('\nPublicado. O GitHub Pages leva um ou dois minutos para atualizar.');

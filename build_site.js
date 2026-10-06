@@ -32,9 +32,11 @@ function main() {
     return;
   }
 
-  // Sem verificacao, a recontagem e parcial: nao oferecer os arquivos dela para nao confundir com o total.
+  // Enquanto algum lugar nao foi recontado, a recontagem e parcial: nao oferecer os arquivos dela
+  // para que os totais "BRASIL" parciais nao sejam confundidos com o total do pais.
+  const recountCoversAll = verification.locations.every((item) => item.status !== 'pendente');
   const partialRecountFiles = ['votos_presidente_bu.csv', 'reconciliacao_presidente_bu.json'];
-  const files = downloadFiles().filter((file) => verification.verified || !partialRecountFiles.includes(file.name));
+  const files = downloadFiles().filter((file) => recountCoversAll || !partialRecountFiles.includes(file.name));
   const results = { ...buildResults(), downloads: files.map(({ name, label }) => ({ name, label })) };
 
   fs.rmSync(DIST, { recursive: true, force: true });
@@ -46,7 +48,7 @@ function main() {
   fs.mkdirSync(path.join(DIST, 'dados'), { recursive: true });
   for (const file of files) fs.copyFileSync(file.source, path.join(DIST, 'dados', file.name));
 
-  console.log(`\nSite gerado em ${DIST} (${results.mode === 'recontagem' ? 'recontagem verificada' : 'números oficiais do TSE, recontagem pendente'}).`);
+  console.log(`\nSite gerado em ${DIST} (${results.verified ? 'recontagem verificada' : 'recontagem ainda com diferenças ou incompleta'}).`);
 }
 
 main();

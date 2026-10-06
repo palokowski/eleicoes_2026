@@ -4,17 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Apuração presidencial | 1º turno</title>
-    <meta name="description" content="Recontagem independente dos boletins de urna da eleição presidencial de 2026, 1º turno, comparada com o resultado oficial do TSE." />
+    <meta name="description" content="Resultado oficial do TSE e recontagem dos boletins de urna da eleição presidencial de 2026, 1º turno, lado a lado." />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="container">
       <header class="header">
         <div>
-          <p class="eyebrow" id="mode-label">Eleições 2026 · 1º turno</p>
-          <h1>Presidência do Brasil</h1>
+          <p class="eyebrow">Eleições 2026 · Presidente · 1º turno</p>
+          <h1>Resultado do TSE × recontagem dos boletins de urna</h1>
         </div>
-        <button id="load-results" class="primary">Atualizar contagem</button>
       </header>
 
       <div id="status-banner" class="status-banner" hidden></div>
@@ -22,58 +21,63 @@
       <section class="summary" id="summary">
         <div class="loading">Carregando resultados…</div>
       </section>
+      <p id="summary-extra" class="summary-extra"></p>
 
       <section class="results-card chart-section">
         <div class="section-heading">
           <div>
-            <p class="eyebrow">Votos válidos por candidato</p>
+            <p class="eyebrow">Votos por candidato</p>
             <h2 id="chart-title">Brasil</h2>
           </div>
-          <label for="location-select">Localidade
+          <label for="location-select">Escolha o local
             <select id="location-select" disabled>
               <option value="br">Brasil</option>
             </select>
           </label>
         </div>
-        <div class="chart-wrap"><canvas id="votes-chart" aria-label="Gráfico de votos e porcentagem por candidato"></canvas></div>
-        <div id="candidate-table-wrap" class="table-wrap">
-          <table>
+        <div class="chart-wrap"><canvas id="votes-chart" aria-label="Gráfico da porcentagem de votos válidos por candidato"></canvas></div>
+        <div class="table-wrap">
+          <table class="compare-table">
             <thead>
               <tr>
-                <th>Número</th>
+                <th>Nº</th>
                 <th>Candidato</th>
-                <th>Partido</th>
-                <th class="num">Votos</th>
                 <th class="num">% válidos</th>
+                <th class="num col-tse">TSE</th>
+                <th class="num col-bu">Boletins de urna</th>
+                <th class="num">Diferença</th>
               </tr>
             </thead>
             <tbody id="candidate-table"></tbody>
           </table>
         </div>
+        <div id="location-note" class="location-note" hidden></div>
       </section>
 
       <section class="results-card">
         <div class="section-heading">
           <div>
             <p class="eyebrow">Brasil e exterior</p>
-            <h2>Totais por localidade</h2>
+            <h2>Votos válidos por estado</h2>
           </div>
+          <p class="legend"><span class="swatch swatch-22"></span>Flávio Bolsonaro venceu <span class="swatch swatch-13"></span>Lula venceu</p>
         </div>
         <div class="table-wrap">
-          <table>
+          <table class="compare-table">
             <thead>
               <tr>
                 <th>UF</th>
-                <th>Localidade</th>
-                <th class="num">Votos válidos</th>
-                <th class="num">Comparecimento</th>
+                <th>Local</th>
+                <th class="num col-tse">TSE</th>
+                <th class="num col-bu">Boletins de urna</th>
+                <th class="num">Diferença</th>
                 <th>Vencedor</th>
               </tr>
             </thead>
             <tbody id="state-table"></tbody>
           </table>
         </div>
-        <p id="source-note" class="source-note"></p>
+        <p class="source-note">Clique em um estado para ver os votos de cada candidato.</p>
       </section>
 
       <section class="results-card" id="downloads-section" hidden>
@@ -90,25 +94,21 @@
         <div class="section-heading">
           <div>
             <p class="eyebrow">Conferência</p>
-            <h2>Recontagem × resultado oficial do TSE</h2>
+            <h2>Como a recontagem foi conferida</h2>
           </div>
         </div>
-        <ul class="check-list" id="check-list"></ul>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Localidade</th>
-                <th class="num">Válidos · TSE</th>
-                <th class="num">Válidos · BUs recontados</th>
-                <th>Situação</th>
-              </tr>
-            </thead>
-            <tbody id="verification-table"></tbody>
-          </table>
-        </div>
-        <p id="verification-note" class="source-note"></p>
+        <p class="explain">
+          Cada boletim de urna (BU) foi baixado do site do TSE e lido com o mesmo leitor usado pelo aplicativo oficial do TSE.
+          Os votos de cada candidato foram somados por estado e comparados, um a um, com o resultado oficial publicado pelo TSE.
+        </p>
+        <details class="tech-details">
+          <summary>Detalhes técnicos da conferência</summary>
+          <ul class="check-list" id="check-list"></ul>
+          <p id="verification-note" class="source-note"></p>
+        </details>
       </section>
+
+      <p id="source-note" class="source-note footer-note"></p>
     </div>
 
     <script src="vendor/chart.js/chart.umd.js"></script>
